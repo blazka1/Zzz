@@ -7,6 +7,7 @@ public class Main {
     private static final String[] needDec = {"1", "2", "3", "4", "5", "6", "7", "8", "9", "10"};
     private static final Map<Integer, String> allRoman = new HashMap<>();
 
+
     static {
         allRoman.put(1000, "M");
         allRoman.put(900, "CM");
@@ -67,18 +68,7 @@ public class Main {
         return sb.toString();
     }
 
-    public static int toDec(String rom) {
-        int dec = 0;
-        for (Map.Entry<Integer, String> entry : allRoman.entrySet()) {
-            int key = entry.getKey();
-            String value = entry.getValue();
-            while (rom.startsWith(value)) {
-                dec += key;
-                rom = rom.substring(value.length());
-            }
-        }
-        return dec;
-    }
+
 
     public static String calc(String input) {
         if (input.length() <= 2) {
@@ -157,8 +147,8 @@ public class Main {
         }
 
         if ("calcRom".equals(typeCalc)) {
-            int num1 = toDec(arrCalc[0]);
-            int num2 = toDec(arrCalc[1]);
+            int num1 = RomanToNumber.romanToDecimal(arrCalc[0]);
+            int num2 = RomanToNumber.romanToDecimal(arrCalc[1]);
 
             switch (oper) {
                 case "+":
@@ -172,7 +162,7 @@ public class Main {
                 case "*":
                     return toRoman(num1 * num2);
                 case "/":
-                    return toRoman((int) num1 / num2);
+                    return toRoman(num1 / num2);
             }
         }
 
@@ -192,5 +182,6 @@ public class Main {
         Scanner sc = new Scanner(System.in);
         String str = sc.nextLine();
         System.out.print(calc(str));
+//        System.out.println(toRoman(10));
     }
 }
